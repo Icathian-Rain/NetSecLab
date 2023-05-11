@@ -11,12 +11,13 @@ services:
                 - "/dev/net/tun:/dev/net/tun"
         volumes:
                 - ./clientVolumes:/volumes
+        extra_hosts:
+        - "fqhvpnserver.com:10.9.0.11"
         networks:
             net-10.9.0.0:
                 ipv4_address: 10.9.0.5
         command: bash -c "
-                     tail -f /dev/null &&
-                     echo 10.9.0.11 fqhvpnserver.com >> /etc/hosts
+                     tail -f /dev/null
                  "
 
     VPN_Client2:
@@ -24,17 +25,18 @@ services:
       container_name: client-10.9.0.6
       tty: true
       cap_add:
-        - ALL
+       - ALL
       devices:
-        - "/dev/net/tun:/dev/net/tun"
+       - "/dev/net/tun:/dev/net/tun"
       volumes:
-        - ./clientVolumes:/volumes
+       - ./clientVolumes:/volumes
+      extra_hosts:
+      - "fqhvpnserver.com:10.9.0.11"
       networks:
-        net-10.9.0.0:
+       net-10.9.0.0:
           ipv4_address: 10.9.0.6
       command: bash -c "
-        tail -f /dev/null &&
-        echo 10.9.0.11 fqhvpnserver.com >> /etc/hosts
+        tail -f /dev/null
         "
 
     Host1:
