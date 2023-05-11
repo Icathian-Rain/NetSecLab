@@ -1,7 +1,7 @@
 
 
-#ifndef HUSTVPN_VPNSERVER_H
-#define HUSTVPN_VPNSERVER_H
+#ifndef MINIVPN_VPNSERVER_H
+#define MINIVPN_VPNSERVER_H
 
 #include <string>
 #include <cstring>
@@ -20,11 +20,15 @@
 
 #include <pthread.h>
 #include <shadow.h>
+#include <signal.h>
 
 #include <iostream>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <unordered_map>
 #include "utils.h"
+#include "IPPool.h"
+#include "ThreadSafeQueue.h"
 
 class VPNServer {
 public:
@@ -45,12 +49,22 @@ private:
     std::string key_path;
     // 虚拟IP地址段 TUN
     std::string virtual_ip_cidr;
-
-    int setupTcpServer();
-    int setupTunDevice();
-    void initIPPool();
-    static void cleanPipes();
 };
+
+
+
+typedef struct  {
+    int client_sock;
+    const char *ca_path;
+    const char *cert_path;
+    const char *key_path;
+    int tun_fd;
+} socket_param;
+
+typedef struct {
+    std::string ip_addr;
+    SSL *ssl;
+} listen_queue_param;
 
 
 #endif //HUSTVPN_VPNSERVER_H

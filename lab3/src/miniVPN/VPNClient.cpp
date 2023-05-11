@@ -124,6 +124,8 @@ std::string recv_virtual_ip(SSL *ssl) {
     printf("virtual ip: %s\n", buf);
     return buf;
 }
+
+
 /// @brief 创建TUN设备
 /// @param virtual_ip 虚拟IP
 /// @param allow_ip_cidr 目的IP子网
@@ -155,7 +157,7 @@ int create_tun_device(const std::string& virtual_ip, const std::string& allow_ip
     char cmd[BUFFER_SIZE];
     //将虚拟IP绑定到TUN设备上
     int err;
-    // ip addr add 192.168.53.5 dev tun0
+    // ip addr add 192.168.53.5/24 dev tun0
     snprintf(cmd, BUFFER_SIZE, "ip addr add %s dev tun%d",virtual_ip.c_str(),tunId);
     err = system(cmd);
     if (err == -1) {
@@ -216,7 +218,7 @@ void socketSelected(int tun_fd, SSL *ssl) {
     len = SSL_read(ssl, buf, BUFFER_SIZE);
     if (len == 0) {
         fprintf(stderr, "the ssl socket close!\n");
-        return;
+        exit(1);
     }
     buf[len] = '\0';
     // 将数据写入tun设备

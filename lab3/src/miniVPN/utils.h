@@ -12,10 +12,8 @@
 #define BUFFER_SIZE 4096
 
 std::string get_ip_by_cidr(const std::string& cidr, int index);
+int cidr_to_ip_and_mask(const char *cidr, uint32_t *ip, uint32_t *mask);
 std::string int_to_ip(uint32_t ip_addr);
 
-std::string allocIPAddr();
-std::string releaseIPAddr(const std::string &ip);
-void init_ip_pool(const std::string& virtual_ip_cidr);
 
 #endif //HUSTVPN_UTILS_H

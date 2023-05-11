@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     std::string mode = std::string(argv[1]);
     if (mode == "server")
     {
-        VPNServer server("10.9.0.11", 4433, "cert/ca.crt", "cert/fqhserver.crt", "cert/fqhserver.key",  "192.168.53.0/24");
+        VPNServer server("10.9.0.11", 4433, "cert/ca.crt", "cert/fqhserver.crt", "cert/fqhserver.key.unsecure",  "192.168.53.0/24");
         server.Listen();
     }
     else if (mode == "client")

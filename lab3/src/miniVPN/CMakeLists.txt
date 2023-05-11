@@ -3,7 +3,7 @@ project(miniVPN)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(miniVPN main.cpp VPNClient.cpp VPNClient.h utils.cpp utils.h VPNServer.cpp VPNServer.h)
+add_executable(miniVPN main.cpp  utils.cpp utils.h VPNServer.cpp VPNServer.h VPNClient.cpp VPNClient.h IPPool.cpp IPPool.h ThreadSafeQueue.h)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
