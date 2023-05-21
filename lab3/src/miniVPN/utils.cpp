@@ -1,7 +1,3 @@
-//
-// Created by yll20 on 2023/04/19.
-//
-
 #include "utils.h"
 
 std::string int_to_ip(uint32_t ip_addr)

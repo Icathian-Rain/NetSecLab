@@ -1,7 +1,3 @@
-//
-// Created by yll20 on 2023/04/19.
-//
-
 #ifndef HUSTVPN_UTILS_H
 #define HUSTVPN_UTILS_H
 
