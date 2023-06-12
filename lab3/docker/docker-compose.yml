@@ -3,7 +3,7 @@ version: "3"
 services:
     VPN_Client:
         image: handsonsecurity/seed-ubuntu:large
-        container_name: client-10.9.0.5
+        container_name: client1
         tty: true
         cap_add:
                 - ALL
@@ -22,7 +22,7 @@ services:
 
     VPN_Client2:
       image: handsonsecurity/seed-ubuntu:large
-      container_name: client-10.9.0.6
+      container_name: client2
       tty: true
       cap_add:
        - ALL
@@ -41,7 +41,7 @@ services:
 
     Host1:
         image: handsonsecurity/seed-ubuntu:large
-        container_name: host-192.168.60.5
+        container_name: host1
         tty: true
         cap_add:
                 - ALL
@@ -57,7 +57,7 @@ services:
                   
     Host2:
         image: handsonsecurity/seed-ubuntu:large
-        container_name: host-192.168.60.6
+        container_name: host2
         tty: true
         cap_add:
                 - ALL
@@ -71,9 +71,9 @@ services:
                       tail -f /dev/null
                  "
 
-    Router:
+    Server:
         image: handsonsecurity/seed-ubuntu:large
-        container_name: server-router
+        container_name: server
         tty: true
         cap_add:
                 - ALL
